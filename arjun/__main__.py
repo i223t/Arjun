@@ -141,7 +141,7 @@ def initialize(request, wordlist, single_url=False):
         populated = populate(wordlist)
         with open(f'{arjun_dir}/db/special.json', 'r') as f:
             populated.update(json.load(f))
-        param_groups = slicer(populated, int(len(wordlist)/mem.var['chunks']))
+        param_groups = slicer(populated, int(len(populated)/mem.var['chunks']))
         prev_chunk_count = len(param_groups)
         last_params = []
         while True:
