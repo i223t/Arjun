@@ -71,7 +71,7 @@ def compare(response, factors, params):
     elif factors['same_redirect'] and 'Location' in response.headers:
         if urlparse(response.headers.get('Location', '')).path != factors['same_redirect']:
             return ('redirection', params)
-    if factors['same_body'] and response.text != factors['same_body']:
+    if type(factors['same_body'])==str and response.text != factors['same_body']:
         return ('body length', params)
     if factors['lines_num'] and response.text.count('\n') != factors['lines_num']:
         return ('number of lines', params)
